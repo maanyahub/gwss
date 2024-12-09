@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Well Soon, My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-pink: #FFD1DC;
+            --warm-white: #FFF5E6;
+            --gentle-purple: #E6E6FA;
+            --healing-green: #98FB98;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--soft-pink), var(--gentle-purple));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1000px;
+            color: #333;
+        }
+
+        .healing-container {
+            width: 95%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg) rotateY(-10deg);
+            transition: all 0.5s ease;
+        }
+
+        .healing-container:hover {
+            transform: rotateX(0) rotateY(0) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            color: #6A5ACD;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .healing-message {
+            background: rgba(255,255,255,0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .healing-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: backgroundMove 10s linear infinite;
+        }
+
+        .care-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #FF69B4, #6A5ACD);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .action-btn:hover::before {
+            left: 100%;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart, .floating-flower {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-heart {
+            width: 50px;
+            fill: rgba(255, 105, 180, 0.5);
+        }
+
+        .floating-flower {
+            width: 40px;
+            fill: rgba(102, 205, 170, 0.5);
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.7);
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #musicPlayer {
+            display: none;
+        }
+
+        .music-btn {
+            background: linear-gradient(135deg, #FF69B4, #6A5ACD);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes backgroundMove {
+            100% { transform: rotate(1turn); }
+        }
+
+        @media (max-width: 600px) {
+            .healing-container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .care-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-btn {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .music-controls {
+                bottom: 10px;
+                right: 10px;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="healing-container">
+        <div class="floating-elements">
+            <svg class="floating-heart" style="top: 10%; left: 5%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <svg class="floating-flower" style="top: 80%; right: 10%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zm-9-9c0 4.97 4.03 9 9 9 0-4.97-4.03-9-9-9zm9-9c-4.97 0-9 4.03-9 9 4.97 0 9-4.03 9-9zm0-9c4.97 0 9 4.03 9 9-4.97 0-9-4.03-9-9z"/>
+            </svg>
+        </div>
+
+        <div class="header">
+            <h1>Hey Maanya, Feel Better Soon! 💕</h1>
+        </div>
+
+        <div class="healing-message">
+            <p>My sweet princess, I know you work so hard every day and sometimes your body needs extra love and rest. Today, I want you to know that it's okay to slow down, to take care of yourself, and to prioritize your health.</p>
+            
+            <br>
+            
+            <p>Remember, you're not just an amazing worker, but an incredible human being who deserves gentle care and compassion. Your worth isn't measured by how much you do, but by who you are - and you are absolutely wonderful.</p>
+        </div>
+
+        <div class="care-actions">
+            <button class="action-btn" onclick="sendVirtualHug()">Send Virtual Hug 🤗</button>
+            <button class="action-btn" onclick="openHealthTips()">Health Tips 🩺</button>
+        </div>
+    </div>
+
+    <!-- Music Player and Controls -->
+    <audio id="musicPlayer" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/24/audio_697ed76e3d.mp3?filename=soft-and-calm-ambient-background-music-for-videos-and-podcasts-135738.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="music-controls">
+        <button class="music-btn" onclick="toggleMusic()">🎵 Play Healing Music</button>
+    </div>
+
+    <script>
+        let isPlaying = false;
+        const musicPlayer = document.getElementById('musicPlayer');
+
+        function toggleMusic() {
+            const musicBtn = event.target;
+            if (!isPlaying) {
+                musicPlayer.play();
+                musicBtn.textContent = '🛑 Pause Music';
+                isPlaying = true;
+            } else {
+                musicPlayer.pause();
+                musicBtn.textContent = '🎵 Play Healing Music';
+                isPlaying = false;
+            }
+        }
+
+        function sendVirtualHug() {
+            alert("A warm, gentle hug is sent your way! 💕 Rest and heal, my love. I'm here for you always.");
+        }
+
+        function openHealthTips() {
+            const tips = [
+                "Stay hydrated with warm herbal tea",
+                "Get plenty of rest and sleep",
+                "Eat light, nutritious meals",
+                "Use a warm compress for comfort",
+                "Take your prescribed medications",
+                "Keep your room warm and comfortable"
+            ];
+
+            let tipMessage = "💖 Health Tips for My Love:\n\n";
+            tips.forEach((tip, index) => {
+                tipMessage += `${index + 1}. ${tip}\n`;
+            });
+
+            alert(tipMessage);
+        }
+
+        window.addEventListener('load', () => {
+            musicPlayer.volume = 0.3; // Set to lower volume
+        });
+    </script>
+</body>
+</html>
