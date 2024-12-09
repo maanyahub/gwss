@@ -153,36 +153,48 @@
             fill: rgba(102, 205, 170, 0.5);
         }
 
-        .music-controls {
+        .music-player {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            display: flex;
-            align-items: center;
-            background: rgba(255,255,255,0.7);
-            padding: 10px;
-            border-radius: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        #musicPlayer {
-            display: none;
+        .music-player-minimize {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
         }
 
-        .music-btn {
+        .music-player iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .music-player-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background: linear-gradient(135deg, #FF69B4, #6A5ACD);
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 30px;
             cursor: pointer;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
+            z-index: 101;
         }
 
         @keyframes pulse {
@@ -219,10 +231,10 @@
                 width: 100%;
             }
 
-            .music-controls {
+            .music-player {
+                width: 90%;
+                right: 5%;
                 bottom: 10px;
-                right: 10px;
-                flex-direction: column;
             }
         }
     </style>
@@ -256,30 +268,38 @@
         </div>
     </div>
 
-    <!-- Music Player and Controls -->
-    <audio id="musicPlayer" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/24/audio_697ed76e3d.mp3?filename=soft-and-calm-ambient-background-music-for-videos-and-podcasts-135738.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <div class="music-controls">
-        <button class="music-btn" onclick="toggleMusic()">🎵 Play Healing Music</button>
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer" style="display:none;">
+        <button class="music-player-minimize" onclick="toggleMusicPlayer()">−</button>
+        <iframe 
+            width="966" 
+            height="543" 
+            src="https://www.youtube.com/embed/zoK1swTBKXc?autoplay=1&loop=1&playlist=zoK1swTBKXc" 
+            title="Peder B. Helland - Bright Future (Full Album)" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+        ></iframe>
     </div>
 
-    <script>
-        let isPlaying = false;
-        const musicPlayer = document.getElementById('musicPlayer');
+    <button class="music-player-toggle" onclick="toggleMusicPlayer()">🎵 Play Music</button>
 
-        function toggleMusic() {
-            const musicBtn = event.target;
-            if (!isPlaying) {
-                musicPlayer.play();
-                musicBtn.textContent = '🛑 Pause Music';
-                isPlaying = true;
+    <script>
+        let isMusicPlayerVisible = false;
+
+        function toggleMusicPlayer() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            const musicToggleBtn = document.querySelector('.music-player-toggle');
+
+            if (!isMusicPlayerVisible) {
+                musicPlayer.style.display = 'block';
+                musicToggleBtn.textContent = '🛑 Close Music';
+                isMusicPlayerVisible = true;
             } else {
-                musicPlayer.pause();
-                musicBtn.textContent = '🎵 Play Healing Music';
-                isPlaying = false;
+                musicPlayer.style.display = 'none';
+                musicToggleBtn.textContent = '🎵 Play Music';
+                isMusicPlayerVisible = false;
             }
         }
 
@@ -289,11 +309,11 @@
 
         function openHealthTips() {
             const tips = [
-                "Stay hydrated with warm herbal tea",
+                "Stay hydrated love",
                 "Get plenty of rest and sleep",
                 "Eat light, nutritious meals",
-                "Use a warm compress for comfort",
-                "Take your prescribed medications",
+                "Use a warm compress or pillow babe for comfort",
+                "Take your water which mom gives",
                 "Keep your room warm and comfortable"
             ];
 
@@ -304,10 +324,6 @@
 
             alert(tipMessage);
         }
-
-        window.addEventListener('load', () => {
-            musicPlayer.volume = 0.3; // Set to lower volume
-        });
     </script>
 </body>
 </html>
